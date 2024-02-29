@@ -1,0 +1,1 @@
+export const calcTotalPrice = (games) => games.reduce((acc, game) => (acc += game.price), 0);
