@@ -27,13 +27,21 @@ export const OrderView = () => {
     navigate('/');
   }
 
+  const handlePaymentNavigate = (e) => {
+    e.stopPropagation();
+    navigate(`/payment/${randomOrderNumber}`)
+  }
+
   return (
     <div className='bg-black pt-[120px] pb-[90px] min-h-screen overflow-hidden'>
       <div className='max-w-[70rem] mx-auto'>
         {games.length > 0 && (
           <div className='flex items-center justify-between border-b-2 border-gray-600'>
             <div className='text-white text-[20px] p-5 font-bold text-left'>Your order: #{randomOrderNumber}</div>
-            <div className='text-white text-[20px] font-bold px-5'>Total: {calcTotalPrice(games)} $</div>
+            <div className='flex items-center'>
+              <div className='text-white text-[20px] font-bold px-5'>Total: {calcTotalPrice(games)} $</div>
+              <Button text='Make order' onClick={handlePaymentNavigate}/>
+            </div>
           </div>
         )}
         <div className='flex flex-col gap-8 p-3'>

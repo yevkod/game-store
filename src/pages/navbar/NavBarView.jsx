@@ -34,7 +34,11 @@ export const NavBarView = () => {
                             <div className='absolute right-[120%] -top-3 w-6 text-white bg-red-500 font-medium rounded-full'>{games.length}</div>
                         </div>
                     )}
-                    <div className='absolute pt-3 p-2 top-3/4 right-[0.5%] md:right-16 md:max-w-[400px] break-all w-full'>{cartVisible && <CartBlock setCartVisible={setCartVisible} />}</div>
+                    {cartVisible && (
+                        <div className='absolute pt-3 p-2 top-3/4 right-[0.5%] md:right-16 md:max-w-[400px] break-all w-full'>
+                            <CartBlock setCartVisible={setCartVisible} />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
