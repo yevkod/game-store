@@ -15,10 +15,10 @@ export const BuyGame = ({ gameItem }) => {
 
     return (
         <div className='flex items-center gap-5'>
-            <div className='text-white font-bold text-[20px]'>
+            <div className='text-white font-bold text-[16px] sm:text-[20px]'>
                 <span>{gameItem.price} $</span>
             </div>
-            <Button text={`${isItemInCart ? 'Remove from cart' : 'Add to cart'}`} className={`${isItemInCart ? 'bg-gray-500 hover:bg-gray-600 active:bg-gray-700' : ''}  text-[14px]`} onClick={handleBuyClick} />
+            <Button text={`${isItemInCart ? 'Remove from cart' : 'Add to cart'}`} className={`${isItemInCart ? 'bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-[10px] sm:text-[14px]' : 'text-[10px] sm:text-[14px]'}  `} onClick={handleBuyClick} />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { calcTotalPrice } from '../helpers/utils';
+import { calcTotalPrice, randomOrderNumber } from '../helpers/utils';
 import { Button } from '../Button/Button';
 import { CartItemView } from '../CartItem/CartItemView';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ export const CartBlock = ({ setCartVisible }) => {
   const handleNavigate = (e) => {
     e.stopPropagation();
     setCartVisible(false);
-    navigate(`/order`)
+    navigate(`/order/${randomOrderNumber}`)
   }
 
 
