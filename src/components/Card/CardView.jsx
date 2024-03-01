@@ -36,8 +36,9 @@ export const CardView = ({ item }) => {
                 />
             ) : (
                 <>
-                    <div className='max-w-[100%]'>
-                        <img className='max-w-[100%]' src={item.image} alt={item.title} />
+                    <div className='max-w-[100%] h-full'>
+                        <div className={`justify-center h-[230px] bg-no-repeat bg-cover bg-center rounded-t-lg`}
+                            style={{ backgroundImage: `url(${item.image})` }}></div>
                     </div>
                     <div className='flex flex-col bg-gray-800 p-5 rounded-b-2xl'>
                         <div className='text-white text-[20px] font-bold text-left'>
