@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GenreItemsView } from '../../components/Genre/GenreItemsView'
 import { useSelector } from 'react-redux'
 import { BuyGame } from '../../components/BuyGame/BuyGame'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css';
 
 
 export const DetailsView = () => {
+    const [showImg, setShowImg] = useState(true);
     const gameItem = useSelector(state => state.games.currentGame);
+
+    useEffect(() => {
+        if (showImg) {
+            const timer = setTimeout(() => {
+                setShowImg(false);
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
+    }, []);
 
     if (!gameItem) return null;
 
@@ -16,15 +29,23 @@ export const DetailsView = () => {
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2 max-w-[90rem] mx-auto'>
                 <div className='flex flex-col order-2 lg:order-1 w-full'>
-                    <iframe
-                        width='100%'
-                        height='80%'
-                        frameBorder='0'
-                        title='Youtube video player'
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        src={gameItem.video}
-                        className='mt-8'
-                    />
+                    {showImg ? (
+                        <Skeleton
+                            className='rounded-xl h-[250px] lg:h-[550px]'
+                        />
+                    ) : (
+                        <>
+                            <iframe
+                                width='100%'
+                                height='80%'
+                                frameBorder='0'
+                                title='Youtube video player'
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                src={gameItem.video}
+                                className='mt-8'
+                            />
+                        </>
+                    )}
                 </div>
                 <div className='flex flex-col order-1 lg:order-2 items-end w-full'>
                     <div className='flex flex-col bg-gray-900 rounded-lg p-5 justify-end lg:max-w-[30rem]'>
@@ -41,7 +62,7 @@ export const DetailsView = () => {
                         </div>
                         <div className='flex flex-col md:flex-row gap-5 pt-5'>
                             {gameItem.genres.map((genre, index) => (
-                                <div className='flex flex-row' key={index}>
+                                <div className='' key={index}>
                                     <GenreItemsView genre={genre} />
                                 </div>
                             ))}
